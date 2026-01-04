@@ -1,321 +1,364 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pika's Academic Resource Repository</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pika's Academic Resource Repository</title>
 
-<style>
-:root {
-    --primary-color: #2c3e50;
-    --secondary-color: #3498db;
-    --accent-color: #e74c3c;
-    --light-gray: #f8f9fa;
-    --medium-gray: #e9ecef;
-    --dark-gray: #495057;
-    --border-radius: 8px;
-    --box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    --transition: all 0.3s ease;
-}
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --light-gray: #f8f9fa;
+            --medium-gray: #e9ecef;
+            --dark-gray: #495057;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: #f5f7fa;
-    color: #333;
-}
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background-color: #f5f7fa;
+            color: #333;
+            overflow-x: hidden;
+        }
 
-/* ===== Layout ===== */
-.layout {
-    display: flex;
-    min-height: 100vh;
-}
+        /* ===== Layout ===== */
+        .layout {
+            display: flex;
+            min-height: 100vh;
+        }
 
-/* ===== Sidebar ===== */
-.sidebar {
-    width: 240px;
-    background: linear-gradient(135deg, var(--primary-color), #1a2530);
-    color: white;
-    padding: 30px 20px;
-    position: sticky;
-    top: 0;
-    height: 100vh;
-}
+        /* ===== Sidebar (Desktop) ===== */
+        .sidebar {
+            width: 260px;
+            background: linear-gradient(135deg, var(--primary-color), #1a2530);
+            color: white;
+            padding: 30px 20px;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            z-index: 1000;
+            transition: var(--transition);
+        }
 
-.sidebar h2 {
-    margin-bottom: 25px;
-}
+        .sidebar h2 {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            font-weight: 600;
+            text-align: center;
+        }
 
-.sidebar nav a {
-    display: block;
-    color: white;
-    text-decoration: none;
-    padding: 14px;
-    border-radius: var(--border-radius);
-    margin-bottom: 10px;
-}
+        .sidebar nav a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 12px 15px;
+            margin-bottom: 12px;
+            border-radius: var(--border-radius);
+            font-weight: 500;
+            transition: var(--transition);
+        }
 
-.sidebar nav a:hover {
-    background: rgba(255,255,255,0.15);
-}
+        .sidebar nav a:hover {
+            background-color: rgba(255, 255, 255, 0.15);
+        }
 
-/* ===== Mobile Toggle ===== */
-.menu-toggle {
-    display: none;
-    font-size: 1.5rem;
-    cursor: pointer;
-}
+        /* ===== Main Content ===== */
+        .main-content {
+            flex: 1;
+            width: 100%;
+        }
 
-/* ===== Main ===== */
-.main-content {
-    flex: 1;
-}
+        header {
+            background: linear-gradient(135deg, var(--primary-color), #1a2530);
+            color: white;
+            padding: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
 
-header {
-    background: linear-gradient(135deg, var(--primary-color), #1a2530);
-    color: white;
-    padding: 35px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
+        header h1 {
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
 
-header h1 {
-    font-size: 2.2rem;
-}
+        .menu-toggle {
+            display: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: white;
+        }
 
-.container {
-    padding: 25px;
-}
+        .container {
+            padding: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
 
-/* ===== Cards ===== */
-.card {
-    background: white;
-    border-radius: var(--border-radius);
-    padding: 25px;
-    box-shadow: var(--box-shadow);
-    margin-bottom: 30px;
-}
+        .card {
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 25px;
+            margin-bottom: 30px;
+        }
 
-.course-header {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: space-between;
-    border-bottom: 2px solid var(--medium-gray);
-    padding-bottom: 15px;
-}
+        .course-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--medium-gray);
+        }
 
-.course-code {
-    font-size: 1.6rem;
-    color: var(--primary-color);
-}
+        .course-code {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
 
-.badge {
-    background: var(--accent-color);
-    color: white;
-    padding: 6px 14px;
-    border-radius: 20px;
-    font-size: 0.8rem;
-}
+        .badge {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
 
-/* ===== Buttons ===== */
-.btn {
-    display: inline-block;
-    padding: 12px 20px;
-    background: var(--secondary-color);
-    color: white;
-    border-radius: var(--border-radius);
-    text-decoration: none;
-    font-weight: 600;
-}
+        /* ===== Table Design ===== */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
 
-.btn:hover {
-    background: #2980b9;
-}
+        th {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
 
-.resource-status {
-    color: var(--dark-gray);
-    font-style: italic;
-}
+        td {
+            padding: 15px 12px;
+            border-bottom: 1px solid var(--medium-gray);
+        }
 
-/* ===== Tables ===== */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-}
+        .btn {
+            display: inline-block;
+            padding: 8px 16px;
+            background-color: var(--secondary-color);
+            color: white;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: var(--transition);
+            text-align: center;
+        }
 
-th, td {
-    padding: 14px;
-    text-align: center;
-    border-bottom: 1px solid var(--medium-gray);
-}
+        .btn:hover {
+            background-color: #2980b9;
+        }
 
-th {
-    background: var(--primary-color);
-    color: white;
-}
+        .resource-status {
+            font-style: italic;
+            color: var(--dark-gray);
+            font-size: 0.9rem;
+        }
 
-/* ===== Footer ===== */
-footer {
-    text-align: center;
-    padding: 20px;
-    font-size: 0.9rem;
-    color: var(--dark-gray);
-}
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: var(--dark-gray);
+            font-size: 0.9rem;
+        }
 
-/* ===== Responsive ===== */
-@media (max-width: 900px) {
+        /* ===== Responsive Mobile Adjustments ===== */
+        @media (max-width: 900px) {
+            .menu-toggle {
+                display: block;
+            }
 
-    .layout {
-        flex-direction: column;
-    }
+            .sidebar {
+                position: fixed;
+                left: -260px; /* Hide off-screen */
+                top: 0;
+                width: 260px;
+                transition: 0.3s;
+            }
 
-    .sidebar {
-        position: fixed;
-        left: -260px;
-        top: 0;
-        height: 100%;
-        transition: var(--transition);
-        z-index: 1000;
-    }
+            .sidebar.active {
+                left: 0; /* Slide in */
+            }
 
-    .sidebar.active {
-        left: 0;
-    }
+            header h1 {
+                font-size: 1.2rem;
+                text-align: right;
+            }
 
-    .menu-toggle {
-        display: block;
-    }
+            .container {
+                padding: 15px;
+            }
 
-    header h1 {
-        font-size: 1.6rem;
-    }
+            /* Transform Table to Cards */
+            table, thead, tbody, th, td, tr {
+                display: block;
+            }
 
-    .container {
-        padding: 15px;
-    }
+            thead tr {
+                position: absolute;
+                top: -9999px;
+                left: -9999px;
+            }
 
-    /* Table → Card Layout */
-    table, thead, tbody, tr, th, td {
-        display: block;
-    }
+            tr {
+                margin-bottom: 15px;
+                border: 1px solid var(--medium-gray);
+                border-radius: var(--border-radius);
+                padding: 10px;
+            }
 
-    th {
-        display: none;
-    }
+            td {
+                border: none;
+                position: relative;
+                padding-left: 50% !important;
+                text-align: right !important;
+            }
 
-    tr {
-        margin-bottom: 15px;
-        border: 1px solid var(--medium-gray);
-        border-radius: var(--border-radius);
-        padding: 10px;
-        background: #fff;
-    }
-
-    td {
-        text-align: right;
-        position: relative;
-        padding-left: 50%;
-    }
-
-    td::before {
-        content: attr(data-label);
-        position: absolute;
-        left: 15px;
-        font-weight: bold;
-        text-align: left;
-    }
-}
-</style>
-
-<script>
-function toggleMenu() {
-    document.querySelector('.sidebar').classList.toggle('active');
-}
-</script>
-
+            td:before {
+                content: attr(data-label);
+                position: absolute;
+                left: 10px;
+                width: 45%;
+                padding-right: 10px;
+                white-space: nowrap;
+                font-weight: bold;
+                text-align: left;
+                color: var(--primary-color);
+            }
+            
+            .btn {
+                width: 100%;
+                margin-top: 5px;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
 <div class="layout">
+    <aside class="sidebar" id="sidebar">
+        <h2>Pika Lee</h2>
+        <nav>
+            <a href="#" onclick="toggleMenu()">🏠 Home</a>
+            <a href="CV.pdf" target="_blank">📄 CV / Resume</a>
+            <a href="#ioaa" onclick="toggleMenu()">🔭 IOAA</a>
+            <a href="#phys1150" onclick="toggleMenu()">📘 PHYS1150</a>
+        </nav>
+    </aside>
 
-<aside class="sidebar">
-    <h2>Pika Lee</h2>
-    <nav>
-        <a href="#">🏠 Home</a>
-        <a href="CV.pdf" target="_blank">📄 Curriculum Vitae</a>
-        <a href="#ioaa">🔭 IOAA</a>
-        <a href="#phys1150">📘 PHYS1150</a>
-    </nav>
-</aside>
+    <div class="main-content">
+        <header>
+            <span class="menu-toggle" onclick="toggleMenu()">☰</span>
+            <h1>Academic Resources</h1>
+        </header>
 
-<div class="main-content">
+        <main class="container">
+            <div class="card" id="ioaa">
+                <div class="course-header">
+                    <div>
+                        <h2 class="course-code">IOAA</h2>
+                        <p>Intl. Olympiad on Astronomy & Astrophysics</p>
+                    </div>
+                    <span class="badge">Competition</span>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Language</th>
+                            <th>Theory</th>
+                            <th>Observation</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td data-label="Language"><strong>English</strong></td>
+                            <td data-label="Theory"><a href="ioaa_note_en.pdf" class="btn">Download</a></td>
+                            <td data-label="Observation"><a href="ioaa_note_obs_en.pdf" class="btn">Download</a></td>
+                        </tr>
+                        <tr>
+                            <td data-label="Language"><strong>Chinese</strong></td>
+                            <td data-label="Theory"><a href="ioaa_note_zh.pdf" class="btn">Download</a></td>
+                            <td data-label="Observation"><span class="resource-status">Coming Soon</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
 
-<header>
-    <span class="menu-toggle" onclick="toggleMenu()">☰</span>
-    <h1>Pika's Academic Resource Repository</h1>
-</header>
+            <div class="card" id="phys1150">
+                <div class="course-header">
+                    <div>
+                        <h2 class="course-code">PHYS1150</h2>
+                        <p>Problem Solving in Physics</p>
+                    </div>
+                    <span class="badge">Unofficial</span>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Item</th>
+                            <th>Question</th>
+                            <th>Solution</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td data-label="Item"><strong>Mock Set 1</strong></td>
+                            <td data-label="Question"><a href="phys1150_mock_set_1.pdf" class="btn">Download</a></td>
+                            <td data-label="Solution"><span class="resource-status">N/A</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
 
-<main class="container">
-
-<div class="card" id="ioaa">
-<div class="course-header">
-<div>
-<h2 class="course-code">IOAA</h2>
-<p>International Olympiad on Astronomy and Astrophysics</p>
+        <footer>
+            Lee Yiu Sing, Pika © 2025 | Not affiliated with any institution
+        </footer>
+    </div>
 </div>
-<span class="badge">Competition</span>
-</div>
 
-<table>
-<tr>
-<td data-label="Resource"><strong>English</strong></td>
-<td data-label="Theory"><a class="btn" href="ioaa_note_en.pdf">Theory</a></td>
-<td data-label="Obs"><a class="btn" href="ioaa_note_obs_en.pdf">Observation</a></td>
-</tr>
+<script>
+    function toggleMenu() {
+        const sidebar = document.getElementById('sidebar');
+        sidebar.classList.toggle('active');
+    }
 
-<tr>
-<td data-label="Resource"><strong>Chinese</strong></td>
-<td data-label="Theory"><a class="btn" href="ioaa_note_zh.pdf">Theory</a></td>
-<td data-label="Obs"><span class="resource-status">Soon</span></td>
-</tr>
-</table>
-</div>
-
-<div class="card" id="phys1150">
-<div class="course-header">
-<div>
-<h2 class="course-code">PHYS1150</h2>
-<p>Problem Solving in Physics</p>
-</div>
-<span class="badge">Unofficial</span>
-</div>
-
-<table>
-<tr>
-<td data-label="Type"><strong>Mock 1</strong></td>
-<td data-label="Question"><a class="btn" href="phys1150_mock_set_1.pdf">Download</a></td>
-<td data-label="Solution"><span class="resource-status">N/A</span></td>
-</tr>
-</table>
-</div>
-
-</main>
-
-<footer>
-Lee Yiu Sing, Pika © 2025 | Not affiliated with any institution
-</footer>
-
-</div>
-</div>
+    // Close sidebar when clicking outside on mobile
+    document.addEventListener('click', function(event) {
+        const sidebar = document.getElementById('sidebar');
+        const toggle = document.querySelector('.menu-toggle');
+        if (window.innerWidth <= 900) {
+            if (!sidebar.contains(event.target) && !toggle.contains(event.target) && sidebar.classList.contains('active')) {
+                sidebar.classList.remove('active');
+            }
+        }
+    });
+</script>
 
 </body>
 </html>
