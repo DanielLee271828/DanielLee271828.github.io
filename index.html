@@ -1,313 +1,321 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pika's Academic Resource Repository</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pika's Academic Resource Repository</title>
 
-    <style>
-        :root {
-            --primary-color: #2c3e50;
-            --secondary-color: #3498db;
-            --accent-color: #e74c3c;
-            --light-gray: #f8f9fa;
-            --medium-gray: #e9ecef;
-            --dark-gray: #495057;
-            --border-radius: 8px;
-            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            --transition: all 0.3s ease;
-        }
+<style>
+:root {
+    --primary-color: #2c3e50;
+    --secondary-color: #3498db;
+    --accent-color: #e74c3c;
+    --light-gray: #f8f9fa;
+    --medium-gray: #e9ecef;
+    --dark-gray: #495057;
+    --border-radius: 8px;
+    --box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    --transition: all 0.3s ease;
+}
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            background-color: #f5f7fa;
-            color: #333;
-        }
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f5f7fa;
+    color: #333;
+}
 
-        /* ===== Layout ===== */
-        .layout {
-            display: flex;
-            min-height: 100vh;
-        }
+/* ===== Layout ===== */
+.layout {
+    display: flex;
+    min-height: 100vh;
+}
 
-        /* ===== Sidebar ===== */
-        .sidebar {
-            width: 240px;
-            background: linear-gradient(135deg, var(--primary-color), #1a2530);
-            color: white;
-            padding: 30px 20px;
-            position: sticky;
-            top: 0;
-            height: 100vh;
-            box-shadow: var(--box-shadow);
-        }
+/* ===== Sidebar ===== */
+.sidebar {
+    width: 240px;
+    background: linear-gradient(135deg, var(--primary-color), #1a2530);
+    color: white;
+    padding: 30px 20px;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+}
 
-        .sidebar h2 {
-            font-size: 1.5rem;
-            margin-bottom: 30px;
-            font-weight: 600;
-        }
+.sidebar h2 {
+    margin-bottom: 25px;
+}
 
-        .sidebar nav a {
-            display: block;
-            color: white;
-            text-decoration: none;
-            padding: 12px 12px;
-            margin-bottom: 12px;
-            border-radius: var(--border-radius);
-            font-weight: 500;
-            transition: var(--transition);
-        }
+.sidebar nav a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    padding: 14px;
+    border-radius: var(--border-radius);
+    margin-bottom: 10px;
+}
 
-        .sidebar nav a:hover {
-            background-color: rgba(255, 255, 255, 0.15);
-        }
+.sidebar nav a:hover {
+    background: rgba(255,255,255,0.15);
+}
 
-        /* ===== Main Content ===== */
-        .main-content {
-            flex: 1;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+/* ===== Mobile Toggle ===== */
+.menu-toggle {
+    display: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
 
-        header {
-            background: linear-gradient(135deg, var(--primary-color), #1a2530);
-            color: white;
-            padding: 40px 30px;
-            margin-bottom: 40px;
-            box-shadow: var(--box-shadow);
-        }
+/* ===== Main ===== */
+.main-content {
+    flex: 1;
+}
 
-        header h1 {
-            font-size: 2.5rem;
-            font-weight: 600;
-        }
+header {
+    background: linear-gradient(135deg, var(--primary-color), #1a2530);
+    color: white;
+    padding: 35px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
-        .container {
-            padding: 0 30px 30px;
-        }
+header h1 {
+    font-size: 2.2rem;
+}
 
-        .card {
-            background: white;
-            border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow);
-            padding: 30px;
-            margin-bottom: 30px;
-            transition: var(--transition);
-        }
+.container {
+    padding: 25px;
+}
 
-        .card:hover {
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-        }
+/* ===== Cards ===== */
+.card {
+    background: white;
+    border-radius: var(--border-radius);
+    padding: 25px;
+    box-shadow: var(--box-shadow);
+    margin-bottom: 30px;
+}
 
-        .course-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 25px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid var(--medium-gray);
-        }
+.course-header {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: space-between;
+    border-bottom: 2px solid var(--medium-gray);
+    padding-bottom: 15px;
+}
 
-        .course-code {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--primary-color);
-        }
+.course-code {
+    font-size: 1.6rem;
+    color: var(--primary-color);
+}
 
-        .course-name {
-            font-size: 1.2rem;
-            color: var(--dark-gray);
-        }
+.badge {
+    background: var(--accent-color);
+    color: white;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+}
 
-        .badge {
-            background-color: var(--accent-color);
-            color: white;
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-        }
+/* ===== Buttons ===== */
+.btn {
+    display: inline-block;
+    padding: 12px 20px;
+    background: var(--secondary-color);
+    color: white;
+    border-radius: var(--border-radius);
+    text-decoration: none;
+    font-weight: 600;
+}
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
+.btn:hover {
+    background: #2980b9;
+}
 
-        th {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 16px;
-            font-size: 1.05rem;
-        }
+.resource-status {
+    color: var(--dark-gray);
+    font-style: italic;
+}
 
-        td {
-            padding: 18px;
-            text-align: center;
-            border-bottom: 1px solid var(--medium-gray);
-        }
+/* ===== Tables ===== */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
 
-        tr:hover {
-            background-color: var(--light-gray);
-        }
+th, td {
+    padding: 14px;
+    text-align: center;
+    border-bottom: 1px solid var(--medium-gray);
+}
 
-        .btn {
-            display: inline-block;
-            padding: 12px 22px;
-            background-color: var(--secondary-color);
-            color: white;
-            border-radius: var(--border-radius);
-            text-decoration: none;
-            font-weight: 600;
-            transition: var(--transition);
-        }
+th {
+    background: var(--primary-color);
+    color: white;
+}
 
-        .btn:hover {
-            background-color: #2980b9;
-            transform: translateY(-2px);
-        }
+/* ===== Footer ===== */
+footer {
+    text-align: center;
+    padding: 20px;
+    font-size: 0.9rem;
+    color: var(--dark-gray);
+}
 
-        .btn-outline {
-            background: transparent;
-            border: 2px solid var(--secondary-color);
-            color: var(--secondary-color);
-        }
+/* ===== Responsive ===== */
+@media (max-width: 900px) {
 
-        .btn-outline:hover {
-            background-color: var(--secondary-color);
-            color: white;
-        }
+    .layout {
+        flex-direction: column;
+    }
 
-        .resource-status {
-            font-style: italic;
-            color: var(--dark-gray);
-        }
+    .sidebar {
+        position: fixed;
+        left: -260px;
+        top: 0;
+        height: 100%;
+        transition: var(--transition);
+        z-index: 1000;
+    }
 
-        footer {
-            text-align: center;
-            padding: 20px;
-            color: var(--dark-gray);
-            font-size: 0.9rem;
-            border-top: 1px solid var(--medium-gray);
-        }
+    .sidebar.active {
+        left: 0;
+    }
 
-        /* ===== Responsive ===== */
-        @media (max-width: 900px) {
-            .layout {
-                flex-direction: column;
-            }
+    .menu-toggle {
+        display: block;
+    }
 
-            .sidebar {
-                width: 100%;
-                height: auto;
-                position: relative;
-            }
+    header h1 {
+        font-size: 1.6rem;
+    }
 
-            header h1 {
-                font-size: 2rem;
-            }
-        }
-    </style>
+    .container {
+        padding: 15px;
+    }
+
+    /* Table → Card Layout */
+    table, thead, tbody, tr, th, td {
+        display: block;
+    }
+
+    th {
+        display: none;
+    }
+
+    tr {
+        margin-bottom: 15px;
+        border: 1px solid var(--medium-gray);
+        border-radius: var(--border-radius);
+        padding: 10px;
+        background: #fff;
+    }
+
+    td {
+        text-align: right;
+        position: relative;
+        padding-left: 50%;
+    }
+
+    td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 15px;
+        font-weight: bold;
+        text-align: left;
+    }
+}
+</style>
+
+<script>
+function toggleMenu() {
+    document.querySelector('.sidebar').classList.toggle('active');
+}
+</script>
+
 </head>
 
 <body>
+
 <div class="layout">
 
-    <!-- ===== Sidebar ===== -->
-    <aside class="sidebar">
-        <h2>Pika Lee</h2>
-        <nav>
-            <a href="#">🏠 Home</a>
-            <a href="CV.pdf" target="_blank">📄 Curriculum Vitae</a>
-            <a href="#ioaa">🔭 IOAA</a>
-            <a href="#phys1150">📘 PHYS1150</a>
-        </nav>
-    </aside>
+<aside class="sidebar">
+    <h2>Pika Lee</h2>
+    <nav>
+        <a href="#">🏠 Home</a>
+        <a href="CV.pdf" target="_blank">📄 Curriculum Vitae</a>
+        <a href="#ioaa">🔭 IOAA</a>
+        <a href="#phys1150">📘 PHYS1150</a>
+    </nav>
+</aside>
 
-    <!-- ===== Main Content ===== -->
-    <div class="main-content">
+<div class="main-content">
 
-        <header>
-            <h1>Pika's Academic Resource Repository</h1>
-        </header>
+<header>
+    <span class="menu-toggle" onclick="toggleMenu()">☰</span>
+    <h1>Pika's Academic Resource Repository</h1>
+</header>
 
-        <main class="container">
+<main class="container">
 
-            <!-- IOAA -->
-            <div class="card" id="ioaa">
-                <div class="course-header">
-                    <div>
-                        <h2 class="course-code">IOAA</h2>
-                        <p class="course-name">International Olympiad on Astronomy and Astrophysics</p>
-                    </div>
-                    <span class="badge">Competition Resources</span>
-                </div>
-
-                <table>
-                    <tr>
-                        <th>Resource</th>
-                        <th colspan="2">Note</th>
-                    </tr>
-                    <tr>
-                        <td style="text-align:left;font-weight:600;">English Version</td>
-                        <td><a class="btn" href="ioaa_note_en.pdf" target="_blank">Theory & Data</a></td>
-                        <td><a class="btn" href="ioaa_note_obs_en.pdf" target="_blank">Observation</a></td>
-                    </tr>
-                    <tr>
-                        <td style="text-align:left;font-weight:600;">Chinese Version</td>
-                        <td><a class="btn" href="ioaa_note_zh.pdf" target="_blank">Theory & Data</a></td>
-                        <td><span class="resource-status">Coming Soon</span></td>
-                    </tr>
-                </table>
-            </div>
-
-            <!-- PHYS1150 -->
-            <div class="card" id="phys1150">
-                <div class="course-header">
-                    <div>
-                        <h2 class="course-code">PHYS1150</h2>
-                        <p class="course-name">Problem Solving in Physics</p>
-                    </div>
-                    <span class="badge">Unofficial</span>
-                </div>
-
-                <table>
-                    <tr>
-                        <th>Resource</th>
-                        <th>Mock 1</th>
-                        <th>Mock 2</th>
-                        <th>Mock 3</th>
-                    </tr>
-                    <tr>
-                        <td style="text-align:left;font-weight:600;">Question</td>
-                        <td><a class="btn" href="phys1150_mock_set_1.pdf">Download</a></td>
-                        <td><span class="resource-status">Soon</span></td>
-                        <td><span class="resource-status">Soon</span></td>
-                    </tr>
-                    <tr>
-                        <td style="text-align:left;font-weight:600;">Solution</td>
-                        <td><span class="resource-status">Not available</span></td>
-                        <td><span class="resource-status">Not available</span></td>
-                        <td><span class="resource-status">Not available</span></td>
-                    </tr>
-                </table>
-            </div>
-
-        </main>
-
-        <footer>
-            Lee Yiu Sing, Pika © 2025 | Not affiliated with any institution
-        </footer>
-
-    </div>
+<div class="card" id="ioaa">
+<div class="course-header">
+<div>
+<h2 class="course-code">IOAA</h2>
+<p>International Olympiad on Astronomy and Astrophysics</p>
 </div>
+<span class="badge">Competition</span>
+</div>
+
+<table>
+<tr>
+<td data-label="Resource"><strong>English</strong></td>
+<td data-label="Theory"><a class="btn" href="ioaa_note_en.pdf">Theory</a></td>
+<td data-label="Obs"><a class="btn" href="ioaa_note_obs_en.pdf">Observation</a></td>
+</tr>
+
+<tr>
+<td data-label="Resource"><strong>Chinese</strong></td>
+<td data-label="Theory"><a class="btn" href="ioaa_note_zh.pdf">Theory</a></td>
+<td data-label="Obs"><span class="resource-status">Soon</span></td>
+</tr>
+</table>
+</div>
+
+<div class="card" id="phys1150">
+<div class="course-header">
+<div>
+<h2 class="course-code">PHYS1150</h2>
+<p>Problem Solving in Physics</p>
+</div>
+<span class="badge">Unofficial</span>
+</div>
+
+<table>
+<tr>
+<td data-label="Type"><strong>Mock 1</strong></td>
+<td data-label="Question"><a class="btn" href="phys1150_mock_set_1.pdf">Download</a></td>
+<td data-label="Solution"><span class="resource-status">N/A</span></td>
+</tr>
+</table>
+</div>
+
+</main>
+
+<footer>
+Lee Yiu Sing, Pika © 2025 | Not affiliated with any institution
+</footer>
+
+</div>
+</div>
+
 </body>
 </html>
